@@ -1,2 +1,1 @@
-# DEA_CP1
-readme?
+## Exploratory data analysis course project 1
