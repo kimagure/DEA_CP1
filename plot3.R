@@ -1,0 +1,11 @@
+par(mfrow=c(1,1))
+par(mar=c(3,5,2,2))
+file=read.csv2("household_power_consumption.txt",stringsAsFactors=F)
+file$Date=as.Date(file$Date,"%d/%m/%Y")
+sub=file[file$Date %in% c(as.Date("2007/02/01"),as.Date("2007/02/02")),]
+sub$Time=strptime(paste(sub$Date,sub$Time),"%Y-%m-%d %H:%M:%S")
+plot(sub$Time,as.numeric(sub$Sub_metering_1), type="l",xlab="",ylab="Energy sub metering",cex.lab=0.8,cex.axis=0.7)
+lines(sub$Time,as.numeric(sub$Sub_metering_2), col="red")
+lines(sub$Time,as.numeric(sub$Sub_metering_3), col="blue")
+legend("topright",lty=1,col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),cex=0.6)
+quartz.save("plot3.png")
